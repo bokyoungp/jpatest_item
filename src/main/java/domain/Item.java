@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Item {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
   private long itemId;
   private String itemName;
 
