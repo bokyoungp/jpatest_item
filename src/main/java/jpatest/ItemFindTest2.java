@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class ItemCreateTest {
+public class ItemFindTest2 {
   public static void main(String[] args) {
     // EntityManagerFactory
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpatest");
@@ -17,20 +17,16 @@ public class ItemCreateTest {
     EntityTransaction tx = em.getTransaction();
 
     // Persistence
+    // 즉시로딩, 지연로딩 테스트를 위함.
     tx.begin();
     System.out.println("트랜잭션이 시작됨");
     try {
-      Item item1 = new Item(4L, "선풍기 -1", null);
-      Item item2 = new Item(5L, "에어컨 - 1", null);
-      Item item3 = new Item(6L, "냉장고 - 1", null);
-      System.out.println("비영속상태의 객체가 생성됨");
-      em.persist(item1);
-      em.persist(item2);
-      em.persist(item3);
-      System.out.println("엔티티의 상태가 영속상태로 변경됨");
-      System.out.println("커밋 전");
+      Item item1 = em.find(Item.class, 1L);
+      System.out.println("캐시에 없으면 DB에서 가져올때, 즉시로딩의 경우 item 과 category 를 같이 가져옴");
+      System.out.println(item1.getItemName() + " 카테고리의 내용은 참조하지 않음");
+      System.out.println(item1.getCategory().getCategoryName() + ": 카테고리의 내용을 참조함");
+
       tx.commit();
-      System.out.println("커밋 후");
     } catch (Exception e) {
       tx.rollback();
     }
