@@ -21,10 +21,10 @@ public class ItemCreateTest2 {
     tx.begin();
     System.out.println("트랜잭션이 시작됨");
     try {
-      Category cat1 = em.find(Category.class, 3);
-      Category cat2 = em.find(Category.class, 4);
-      Category cat3 = em.find(Category.class, 5);
-      Category cat4 = em.find(Category.class, 6);
+      Category cat1 = em.find(Category.class, 1);
+      Category cat2 = em.find(Category.class, 2);
+      Category cat3 = em.find(Category.class, 3);
+      Category cat4 = em.find(Category.class, 4);
       System.out.println("category 정보를 DB 에서 가져옴.");
 
       Item item1 = new Item();
